@@ -11,12 +11,15 @@ using namespace std;
 
 class Node{
     string cityName;
+    string other;
+public:
+    Node(string name, string rest);
 };
 
 
 class Graph{
 private:
-    unordered_map<Node*, vector<Node*>>
+    unordered_map<Node*, vector<Node*>> list;
 public:
     void addNode(string name, string otherData);
 };

@@ -5,10 +5,9 @@
  More specifically this will be an adjacency list since I like adjacency lists and I don't think either of you will
  object to the idea.
  */
+#include "Graph.h"
 
-class Graph{
-private:
+void Graph::addNode(string name, string otherData) {
 
-public:
+}
 
-};

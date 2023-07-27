@@ -2,7 +2,24 @@
 #include <iostream>
 using namespace std;
 
+void printMenu(){
+    cout << "Options:" << endl;
+    cout << "-1: Quit" << endl;
+    cout << "1: Input qualities searching for in a city, get recommendation" << endl;
+    cout << "2: Top five cities depending on qualities like above" << endl;
+    cout << "3: Top city w/o qualities ranked" << endl;
+    cout << "4: Top 5 cities w/o qualities ranked?" << endl;
+    // importance of each quality should be possible to weight by importance, but also to choose not to.
+}
+
 int main(){
+    int option;
     cout << "hello" << endl;
+    cin >> option;
+    while(option != -1){
+        printMenu();
+        cin >> option;
+        // do stuff depending on option.
+    }
     return 0;
 }

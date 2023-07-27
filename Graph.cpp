@@ -8,7 +8,7 @@
 #include "Graph.h"
 
 void Graph::addNode(string name, string otherData, string name2, string other2) {
-    list[new Node(name, otherData)] = new Node(name2, other2);
+    list[new Node(name, otherData)].push_back(new Node(name2, other2));
 }
 
 Node::Node(string name, string rest) {

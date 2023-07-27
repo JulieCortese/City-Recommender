@@ -21,5 +21,5 @@ class Graph{
 private:
     unordered_map<Node*, vector<Node*>> list;
 public:
-    void addNode(string name, string otherData);
+    void addNode(string name, string otherData, string name2, string other2);
 };

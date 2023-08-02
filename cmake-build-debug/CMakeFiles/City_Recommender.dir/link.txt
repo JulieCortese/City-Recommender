@@ -1,0 +1,3 @@
+"C:\Users\13213\CLion 2023.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\City_Recommender.dir/objects.a
+C:\mingw\mingw32\bin\ar.exe qc CMakeFiles\City_Recommender.dir/objects.a @CMakeFiles\City_Recommender.dir\objects1.rsp
+C:\mingw\mingw32\bin\c++.exe -g -Wl,--whole-archive CMakeFiles\City_Recommender.dir/objects.a -Wl,--no-whole-archive -o City_Recommender.exe -Wl,--out-implib,libCity_Recommender.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\City_Recommender.dir\linkLibs.rsp

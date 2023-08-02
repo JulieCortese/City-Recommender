@@ -1,5 +1,6 @@
 // Created by Julie, 7/5/2023
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 void printMenu(){
@@ -13,6 +14,7 @@ void printMenu(){
 }
 
 int main(){
+    clock_t t = clock();
     int option;
     cout << "hello" << endl;
     cin >> option;
@@ -21,5 +23,7 @@ int main(){
         cin >> option;
         // do stuff depending on option.
     }
+    t = clock() - t;
+    cout << "Execution time: " << t / 1000000.0 << "s" << endl;
     return 0;
 }

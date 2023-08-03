@@ -25,8 +25,9 @@ int main(){
         printMenu();
         cin >> option;
         // do stuff depending on option.
+        t = clock() - t;
+        cout << "Execution time: " << t / 1000000.0 << "s" << endl << endl;
     }
-    t = clock() - t;
-    cout << "Execution time: " << t / 1000000.0 << "s" << endl;
+
     return 0;
 }

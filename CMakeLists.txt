@@ -6,4 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(City_Recommender main.cpp
         SeparateChain.h
         SeparateChain.cpp
-)
+        fileHandler.h
+        fileHandler.cpp
+        OpenAddressMap.h
+        )

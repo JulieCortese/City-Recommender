@@ -152,6 +152,30 @@ SeparateChain.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\City_Recommender.dir\build.make CMakeFiles/City_Recommender.dir/SeparateChain.cpp.s
 .PHONY : SeparateChain.cpp.s
 
+fileHandler.obj: fileHandler.cpp.obj
+.PHONY : fileHandler.obj
+
+# target to build an object file
+fileHandler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\City_Recommender.dir\build.make CMakeFiles/City_Recommender.dir/fileHandler.cpp.obj
+.PHONY : fileHandler.cpp.obj
+
+fileHandler.i: fileHandler.cpp.i
+.PHONY : fileHandler.i
+
+# target to preprocess a source file
+fileHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\City_Recommender.dir\build.make CMakeFiles/City_Recommender.dir/fileHandler.cpp.i
+.PHONY : fileHandler.cpp.i
+
+fileHandler.s: fileHandler.cpp.s
+.PHONY : fileHandler.s
+
+# target to generate assembly for a file
+fileHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\City_Recommender.dir\build.make CMakeFiles/City_Recommender.dir/fileHandler.cpp.s
+.PHONY : fileHandler.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -188,6 +212,9 @@ help:
 	@echo ... SeparateChain.obj
 	@echo ... SeparateChain.i
 	@echo ... SeparateChain.s
+	@echo ... fileHandler.obj
+	@echo ... fileHandler.i
+	@echo ... fileHandler.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

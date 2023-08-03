@@ -1,8 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/City_Recommender.dir/Graph.cpp.obj"
-  "CMakeFiles/City_Recommender.dir/Graph.cpp.obj.d"
-  "CMakeFiles/City_Recommender.dir/HashTable.cpp.obj"
-  "CMakeFiles/City_Recommender.dir/HashTable.cpp.obj.d"
   "CMakeFiles/City_Recommender.dir/SeparateChain.cpp.obj"
   "CMakeFiles/City_Recommender.dir/SeparateChain.cpp.obj.d"
   "CMakeFiles/City_Recommender.dir/main.cpp.obj"

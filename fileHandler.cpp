@@ -69,9 +69,15 @@ vector<pair<string, vector<string>>>& fileHandler::makeData() {
 
 void fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
     unordered_map<string, vector<string>> fin;
+    unordered_map<string, float> temp; // I'm hoping that everything can be added.
     for(int i = 0; i < arr.size(); i++){
         if(fin.find(arr.at(i).first) == fin.end()){
             fin[arr.at(i).first] = arr.at(i).second;
+        }else if(temp.find(arr[i].first) == temp.end()){
+            // ok so we want to add the values in fin and store the number to divide by to get avg in temp
+        }
+        else{
+            // this is if there's something in fin, but not temp. add vals in fin and num to divide by is 2.
         }
         // if there's already a key for the city, we want to add and then take avg.
     }

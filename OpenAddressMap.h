@@ -59,7 +59,7 @@ public:
     }
 
 
-    void remove(Key k){
+    void erase(Key k){
         int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k)
@@ -72,7 +72,7 @@ public:
 
 
 
-    bool find(Key k){
+    bool contains(Key k){
 
         int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){

@@ -39,7 +39,11 @@ private:
 
 
 public:
-    OpenAddressMap(){}
+    OpenAddressMap(){
+        for (int i = 0; i < capacity; i++){
+            container[i] = entry();
+        }
+    }
 
 
     void insert(Key k, Value v){

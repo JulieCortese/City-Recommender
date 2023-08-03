@@ -22,7 +22,10 @@ int main(){
     int option;
     cout << "hello" << endl;
     fileHandler handle;
-    vector<unordered_map<string, vector<string>>> data = handle.makeData();
+    cout << "loading data, please wait." << endl;
+    vector<pair<string, vector<string>>>& data = handle.makeData();
+    cout << "Data loaded! Go ahead!" << endl;
+    // the file is big, so you'll have to wait a couple seconds for it to load.
     cin >> option;
     while(option != -1){
         printMenu();

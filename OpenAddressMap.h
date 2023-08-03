@@ -2,6 +2,7 @@
 #pragma once
 #include <functional> //for std::hash
 #include <vector>
+#include <stdexcept>
 
 template<typename Key, typename Value>
 class OpenAddressMap{
@@ -94,10 +95,10 @@ public:
             if(container[(i + h) % capacity].key == k)
                 return container[(i + h) % capacity].value;
             if(container[(i + h) % capacity].fresh)
-                {}//throw error
+                throw std::runtime_error("Key is not present in map.");
         }
 
-        //throw error
+        throw std::runtime_error("Key is not present in map.");
     }
 
 };

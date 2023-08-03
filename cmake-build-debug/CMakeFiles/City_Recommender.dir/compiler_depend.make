@@ -308,7 +308,13 @@ CMakeFiles/City_Recommender.dir/main.cpp.obj: C:/Users/julie/CLionProjects/City-
   C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/ctime \
   C:/mingw64-v7.3.0/x86_64-w64-mingw32/include/time.h \
   C:/mingw64-v7.3.0/x86_64-w64-mingw32/include/_timeval.h \
-  C:/mingw64-v7.3.0/x86_64-w64-mingw32/include/pthread_time.h
+  C:/mingw64-v7.3.0/x86_64-w64-mingw32/include/pthread_time.h \
+  C:/Users/julie/CLionProjects/City-Recommender/fileHandler.h \
+  C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/fstream \
+  C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/codecvt.h \
+  C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+  C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+  C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/bits/fstream.tcc
 
 
 C:/mingw64-v7.3.0/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h:

@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <ctime>
+#include "fileHandler.h"
 using namespace std;
 
 void printMenu(){
@@ -20,6 +21,8 @@ int main(){
     clock_t t = clock();
     int option;
     cout << "hello" << endl;
+    fileHandler handle;
+    vector<unordered_map<string, vector<string>>> data = handle.makeData();
     cin >> option;
     while(option != -1){
         printMenu();

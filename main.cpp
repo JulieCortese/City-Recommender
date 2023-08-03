@@ -1,5 +1,8 @@
 // Created by Julie, 7/5/2023
 #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <string>
 #include <ctime>
 using namespace std;
 

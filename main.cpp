@@ -1,5 +1,10 @@
 // Created by Julie, 7/5/2023
 #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <string>
+#include <ctime>
+#include "fileHandler.h"
 using namespace std;
 
 void printMenu(){
@@ -13,13 +18,19 @@ void printMenu(){
 }
 
 int main(){
+    clock_t t = clock();
     int option;
     cout << "hello" << endl;
+    fileHandler handle;
+    vector<unordered_map<string, vector<string>>> data = handle.makeData();
     cin >> option;
     while(option != -1){
         printMenu();
         cin >> option;
         // do stuff depending on option.
+        t = clock() - t;
+        cout << "Execution time: " << t / 1000000.0 << "s" << endl << endl;
     }
+
     return 0;
 }

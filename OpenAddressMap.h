@@ -1,5 +1,5 @@
 // Created by Lorraine, 8/2/2023
-
+#pragma once
 #include <functional> //for std::hash
 #include <vector>
 

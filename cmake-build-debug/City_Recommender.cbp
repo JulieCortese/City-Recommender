@@ -83,9 +83,6 @@
 		<Unit filename="C:/Users/julie/CLionProjects/City-Recommender/OpenAddressMap.h">
 			<Option target="City_Recommender"/>
 		</Unit>
-		<Unit filename="C:/Users/julie/CLionProjects/City-Recommender/SeparateChain.cpp">
-			<Option target="City_Recommender"/>
-		</Unit>
 		<Unit filename="C:/Users/julie/CLionProjects/City-Recommender/SeparateChain.h">
 			<Option target="City_Recommender"/>
 		</Unit>

@@ -11,6 +11,6 @@ using namespace std;
 
 class fileHandler{
 public:
-    vector<pair<string, vector<string>>>& makeData();
-    vector<pair<string, vector<string>>>& avgToCity(vector<pair<string, vector<string>>>& arr);
+    vector<pair<string, vector<string>>> makeData();
+    vector<pair<string, vector<string>>> avgToCity(vector<pair<string, vector<string>>>& arr);
 };

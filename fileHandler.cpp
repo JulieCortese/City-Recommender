@@ -16,7 +16,7 @@ void directory_check(){
     //cout << current_working_dir << endl;
 }
 
-vector<pair<string, vector<string>>>& fileHandler::makeData() {
+vector<pair<string, vector<string>>> fileHandler::makeData() {
     //cout << "hi" << endl;
     directory_check();
     vector<pair<string, vector<string>>> temp;
@@ -66,14 +66,17 @@ vector<pair<string, vector<string>>>& fileHandler::makeData() {
     }
     for(int i = 0; i < out.size(); i++){
         if(out.at(i).first != "" and out.at(i).first != " "){
-            string temp = out.at(i).first.substr(1, out.at(i).first.size() - 1);
-            out.at(i).first = temp;
+            if(out.at(i).first.at(0) == '"') {
+                string temp = out.at(i).first.substr(1, out.at(i).first.size() - 1);
+                out.at(i).first = temp;
+            }
         }
     }
+
     return out;
 }
 
-vector<pair<string, vector<string>>>& fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
+vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
     /*
     unordered_map<string, vector<string>> fin;
     unordered_map<string, float> out; // I'm hoping that everything can be added.
@@ -115,7 +118,9 @@ vector<pair<string, vector<string>>>& fileHandler::avgToCity(vector<pair<string,
     return fin;
      */
     vector<pair<string, vector<string>>> out;
+    cout << arr.size() << endl;
     for(int i = 0; i < arr.size(); i++){
+        cout << "begin" << endl;
         bool found = false;
         for(int j = 0; j < out.size(); j++){
             if(out.at(j).first == arr.at(i).first){

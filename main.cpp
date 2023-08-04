@@ -23,7 +23,7 @@ int main(){
     cout << "hello" << endl;
     fileHandler handle;
     cout << "loading data, please wait." << endl;
-    vector<pair<string, vector<string>>>& data = handle.makeData();
+    vector<pair<string, vector<string>>> data = handle.makeData();
     cout << "step 1 done" << endl;
     data = handle.avgToCity(data); // please work
     cout << "Data loaded." << endl;

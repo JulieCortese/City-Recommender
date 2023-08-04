@@ -41,7 +41,7 @@ int main(){
         clock_t t = clock();
         // do stuff depending on option.
         t = clock() - t;
-        cout << "Execution time: " << t / 1000000.0 << "s" << endl << endl;
+        cout << "Execution time: " << t / 10000000.0 << "s" << endl << endl;
     }
 
     return 0;

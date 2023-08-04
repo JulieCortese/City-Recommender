@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <string>
 #include <ctime>
+#include <fstream>
 #include "fileHandler.h"
 using namespace std;
 
@@ -26,6 +27,11 @@ int main(){
     vector<pair<string, vector<string>>>& data = handle.makeData();
     cout << "Data loaded! Go ahead!" << endl;
     // the file is big, so you'll have to wait a couple seconds for it to load.
+    ifstream file("..\\inputData.csv");
+    if(!file.is_open()){
+        ofstream("..\\inputData.csv");
+
+    }
     cin >> option;
     while(option != -1){
         printMenu();

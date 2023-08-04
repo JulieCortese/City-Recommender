@@ -17,7 +17,7 @@ void directory_check(){
 }
 
 vector<pair<string, vector<string>>>& fileHandler::makeData() {
-    cout << "hi" << endl;
+    //cout << "hi" << endl;
     directory_check();
     vector<pair<string, vector<string>>> temp;
     vector<pair<string, vector<string>>> out;
@@ -64,10 +64,16 @@ vector<pair<string, vector<string>>>& fileHandler::makeData() {
             }
         //}
     }
+    for(int i = 0; i < out.size(); i++){
+        if(out.at(i).first != "" and out.at(i).first != " "){
+            string temp = out.at(i).first.substr(1, out.at(i).first.size() - 1);
+            out.at(i).first = temp;
+        }
+    }
     return out;
 }
 
-void fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
+unordered_map<string, vector<string>>& fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
     unordered_map<string, vector<string>> fin;
     unordered_map<string, float> temp; // I'm hoping that everything can be added.
     for(int i = 0; i < arr.size(); i++){
@@ -75,10 +81,42 @@ void fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
             fin[arr.at(i).first] = arr.at(i).second;
         }else if(temp.find(arr[i].first) == temp.end()){
             // ok so we want to add the values in fin and store the number to divide by to get avg in temp
+            auto it = fin.find(arr[i].first);
+            for(int j = 0; j < it->second.size(); j++){
+                float value = stoi(arr[i].second.at(j));
+                float val2 = stof(it->second.at(j));
+                val2 += value;
+                it->second.at(j) = to_string(val2);
+            }
+            temp[it->first] = 2;
         }
         else{
             // this is if there's something in fin, but not temp. add vals in fin and num to divide by is 2.
+            auto it = fin.find(arr[i].first);
+            for(int j = 0; j < it->second.size(); j++){
+                float value = stoi(arr[i].second.at(j));
+                float val2 = stof(it->second.at(j));
+                val2 += value;
+                it->second.at(j) = to_string(val2);
+            }
+            temp[it->first] += 1;
         }
         // if there's already a key for the city, we want to add and then take avg.
     }
+    for(auto it = temp.begin(); it != temp.end(); it++){
+        auto it2 = fin.find(it->first);
+        for(int m = 0; m < it2->second.size(); m++){
+            float val = stof(it2->second.at(m));
+            val /= it->second;
+            it2->second.at(m) = to_string(val);
+        }
+    }
+    return fin;
+}
+
+void fileHandler::createInput(ofstream &file) { //this'll be one time use for me to make the compressed file
+    vector<pair<string, vector<string>>> temp;
+    temp = makeData();
+    unordered_map<string, vector<string>> toFile = avgToCity(temp);
+    // then write into new file
 }

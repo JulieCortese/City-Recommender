@@ -12,5 +12,6 @@ using namespace std;
 class fileHandler{
 public:
     vector<pair<string, vector<string>>>& makeData();
-    void avgToCity(vector<pair<string, vector<string>>>& arr);
+    unordered_map<string, vector<string>>& avgToCity(vector<pair<string, vector<string>>>& arr);
+    void createInput(ofstream& file);
 };

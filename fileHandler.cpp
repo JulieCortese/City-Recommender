@@ -119,4 +119,12 @@ void fileHandler::createInput(ofstream &file) { //this'll be one time use for me
     temp = makeData();
     unordered_map<string, vector<string>> toFile = avgToCity(temp);
     // then write into new file
+    ofstream newFile("..\\input.csv");
+    for(auto it = toFile.begin(); it != toFile.end(); it++){
+        newFile << it->first << ',';
+        for(int i = 0; i < it->second.size(); i++){
+            newFile << it->second.at(i) << ',';
+        }
+        newFile << endl;
+    }
 }

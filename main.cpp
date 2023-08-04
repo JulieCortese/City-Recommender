@@ -25,13 +25,16 @@ int main(){
     fileHandler handle;
     cout << "loading data, please wait." << endl;
     vector<pair<string, vector<string>>>& data = handle.makeData();
-    cout << "Data loaded! Go ahead!" << endl;
+    cout << "Data loaded." << endl;
     // the file is big, so you'll have to wait a couple seconds for it to load.
     ifstream file("..\\inputData.csv");
     if(!file.is_open()){
-        ofstream("..\\inputData.csv");
+        ofstream file2 ("..\\inputData.csv");
+        handle.createInput(file2); // this function doesn't work yet. some kind of error, I think segfault?
+        cout << "file made?" << endl;
 
     }
+    cout << "hi" << endl;
     cin >> option;
     while(option != -1){
         printMenu();

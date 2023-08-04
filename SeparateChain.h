@@ -27,7 +27,7 @@ class SeparateChain
             {
                 for (auto it = temp[i].begin(); it < temp[i].end(); it++)
                 {
-                    insert(temp[i].first, temp[i].second);
+                    container.insert(temp[i].first, temp[i].second);
                 }
             }
         }

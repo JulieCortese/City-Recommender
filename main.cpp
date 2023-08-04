@@ -19,7 +19,6 @@ void printMenu(){
 }
 
 int main(){
-    clock_t t = clock();
     int option;
     cout << "hello" << endl;
     fileHandler handle;
@@ -39,6 +38,7 @@ int main(){
     while(option != -1){
         printMenu();
         cin >> option;
+        clock_t t = clock();
         // do stuff depending on option.
         t = clock() - t;
         cout << "Execution time: " << t / 1000000.0 << "s" << endl << endl;

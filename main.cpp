@@ -35,6 +35,11 @@ int main(){
         cin >> option;
         clock_t t = clock();
         // do stuff depending on option.
+        if (option == 1){}
+        if (option == 2){}
+        if (option == 3){}
+        if (option == 4){}
+        if (option == 5){}
         t = clock() - t;
         cout << "Execution time: " << t / 10000000.0 << "s" << endl << endl;
     }

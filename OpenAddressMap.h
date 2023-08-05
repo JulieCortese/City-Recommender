@@ -25,28 +25,37 @@ private:
 
     void reHash(){
         std::vector<entry> temp = std::vector<entry>(_capacity);
+
+        //copy to temp
         for (int j = 0; j < _capacity; j++){
-            temp[j] = container[j];
+            std::cout << "copying " << j << "\n";
+            temp[j].empty = container[j].empty;
+            temp[j].fresh = container[j].fresh;
+            temp[j].key = container[j].key;
+            temp[j].value = container[j].value;
         }
         int i = 0;
 
         //empties container
         for (; i < container.capacity(); i++){
+            std::cout << "emptying " << i << "\n";
             container[i] = entry();
         }
 
         //expands container
         while (_size >= container.capacity() * maxLoadFactor){
+            std::cout << "expanding" << "\n";
             container.push_back(entry());
-        }
-
-        //initializes the rest of container
-        for(; i < container.capacity(); i++){
-            container[i] = entry();
         }
 
         _capacity = container.capacity();
         _size = 0;
+
+        //initializes the rest of container
+        for(; i < container.capacity(); i++){
+            //std::cout << "initializing " << i << " " << _capacity << " " << container.capacity() << "\n";
+            container[i] = entry();
+        }
 
 
         //reinserts entries
@@ -60,11 +69,11 @@ private:
     void writeEntry(int i, Key k, Value v){
         if(container[i].key != k)
             _size++;
+        //std::cout << i << " " << k << " " << v[0] << " " << _size << "\n";
         container[i].empty = false;
         container[i].fresh = false;
         container[i].key = k;
         container[i].value = v;
-        //std::cout << i << " " << k << " " << v[0] << " " << _size << "\n";
         if(_size >= _capacity * maxLoadFactor)
             reHash();
     }
@@ -126,7 +135,7 @@ public:
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
             if(container[(i + h) % _capacity].empty || container[(i + h) % _capacity].key == k){
-                writeEntry(i + h % _capacity, k, v);
+                writeEntry((i + h) % _capacity, k, v);
                 break;
             }
         }

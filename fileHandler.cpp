@@ -161,6 +161,7 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
     return out;
 }
 
+/*
 void fileHandler::printAll(vector<pair<string, vector<string>>> &arr) {
     for(int i = 0; i < arr.size(); i++){
         cout << i << ": " << arr.at(i).first << endl;
@@ -170,3 +171,4 @@ void fileHandler::printAll(vector<pair<string, vector<string>>> &arr) {
         cout << endl;
     }
 }
+*/

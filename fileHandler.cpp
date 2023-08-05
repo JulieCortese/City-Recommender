@@ -78,46 +78,6 @@ vector<pair<string, vector<string>>> fileHandler::makeData() {
 }
 
 vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
-    /*
-    unordered_map<string, vector<string>> fin;
-    unordered_map<string, float> out; // I'm hoping that everything can be added.
-    for(int i = 0; i < arr.size(); i++){
-        if(fin.find(arr.at(i).first) == fin.end()){
-            fin[arr.at(i).first] = arr.at(i).second;
-        }else if(out.find(arr[i].first) == out.end()){
-            // ok so we want to add the values in fin and store the number to divide by to get avg in out
-            auto it = fin.find(arr[i].first);
-            for(int j = 0; j < it->second.size(); j++){
-                float value = stoi(arr[i].second.at(j));
-                float val2 = stof(it->second.at(j));
-                val2 += value;
-                it->second.at(j) = to_string(val2);
-            }
-            out[it->first] = 2;
-        }
-        else{
-            // this is if there's something in fin, but not out. add vals in fin and num to divide by is 2.
-            auto it = fin.find(arr[i].first);
-            for(int j = 0; j < it->second.size(); j++){
-                float value = stoi(arr[i].second.at(j));
-                float val2 = stof(it->second.at(j));
-                val2 += value;
-                it->second.at(j) = to_string(val2);
-            }
-            out[it->first] += 1;
-        }
-        // if there's already a key for the city, we want to add and then take avg.
-    }
-    for(auto it = out.begin(); it != out.end(); it++){
-        auto it2 = fin.find(it->first);
-        for(int m = 0; m < it2->second.size(); m++){
-            float val = stof(it2->second.at(m));
-            val /= it->second;
-            it2->second.at(m) = to_string(val);
-        }
-    }
-    return fin;
-     */
     vector<pair<string, vector<string>>> out;
     unordered_map<string, int> divideBy;
     for(int i = 0; i < arr.size(); i++){
@@ -169,4 +129,4 @@ void fileHandler::printAll(vector<pair<string, vector<string>>> &arr) {
         cout << endl;
     }
 }
-*/
+ */

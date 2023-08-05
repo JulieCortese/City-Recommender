@@ -20,6 +20,23 @@ void printMenu(){
     // importance of each quality should be possible to weight by importance, but also to choose not to.
 }
 
+void printQualities(){
+    cout << "Qualities:" << endl;
+    cout << "1: High Population" << endl; //count HU? TotPop?
+    cout << "2: Lots of housing available" << endl; //HH
+    cout << "3: Low necessity of car" << endl; // this will correspond to high number Pct_AO0
+    cout << "4: High density (crowded, lots of people)" << endl; //D1A I think?
+    cout << "5: High amount of retail jobs" << endl; //The E8s for all the jobs
+    cout << "6: High amount of office jobs" << endl;
+    cout << "7: High amount of industrial jobs" << endl;
+    cout << "8: High amount of service jobs" << endl;
+    cout << "9: High amount of entertainment jobs" << endl;
+    cout << "10: High amount of education jobs" << endl;
+    cout << "11: High amount of health care jobs" << endl;
+    cout << "12: High amount of public administration jobs" << endl;
+    cout << "13: High amount of " << endl;
+}
+
 int main(){
     int option;
     cout << "hello" << endl;
@@ -38,14 +55,15 @@ int main(){
     t = clock() - t;
     cout << "Execution time to load data into open address hash map: " << t / 10000000.0 << "s" << endl;
     cout << "Now inserting data into separate chaining hash map." << endl;
-    SeparateChain
     cin >> option;
     while(option != -1){
         printMenu();
         cin >> option;
-        clock_t t = clock();
+        t = clock();
         // do stuff depending on option.
-        if (option == 1){}
+        if (option == 1){
+
+        }
         if (option == 2){}
         if (option == 3){}
         if (option == 4){}

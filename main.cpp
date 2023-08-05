@@ -87,6 +87,10 @@ int main(){
                     fail = true;
                     break;
                 }
+                if(stoi(input) > 19){
+                    fail = true;
+                    break;
+                }
                 for(int j = 0; j < inputs.size(); j++){
                     if(inputs.at(j) == input){
                         cout << "invalid input, you cannot repeat a number." << endl;
@@ -106,6 +110,9 @@ int main(){
                 cout << inputs.at(i) << endl;
             }
             // should start the clock once we start searching the hash maps.
+            // using address map, take the index of first most important, multiply by 5,
+            // index 2nd most important, multiply by 4, 3rd multiplied by 3, 4th multiply by 2, 5th by itself, and add them all up
+            // city with biggest sum is outputted.
             t = clock();
         }
         if (option == 2){

@@ -2,7 +2,6 @@
 //#pragma once
 #include <functional> //for std::hash
 #include <vector>
-#include <iostream>
 #include <stdexcept>
 
 template<typename Key, typename Value>
@@ -24,39 +23,25 @@ private:
     float maxLoadFactor = 0.8;
 
     void reHash(){
-        std::cout << "c:" << _capacity << "\n";
         std::vector<entry> temp = std::vector<entry>(_capacity);
         for (int j = 0; j < _capacity; j++){
             temp[j] = container[j];
         }
-        std::cout << "{";
-        for (int j = 0; j < _capacity; j++){
-            std::cout << container[j].key << ", ";
-        }
-        std::cout << "}\n";
-        std::cout << "{";
-        for (int j = 0; j < _capacity; j++){
-            std::cout << temp[j].key << ", ";
-        }
-        std::cout << "}\n";
         int i = 0;
 
         //empties container
         for (; i < container.capacity(); i++){
-            std::cout << i << "a\n";
             container[i] = entry();
         }
 
         //expands container
         while (_size >= container.capacity() * maxLoadFactor){
-            std::cout << i << "b\n";
             container.push_back(entry());
             i++;
         }
 
         //initializes the rest of container
         for(; i < container.capacity(); i++){
-            std::cout << i << "c\n";
             container[i] = entry();
         }
 
@@ -66,7 +51,6 @@ private:
 
         //reinserts entries
         for(entry e : temp){
-            std::cout << e.key << "\n";
             if(!e.empty)
                 insert(e.key, e.value);
         }
@@ -130,8 +114,7 @@ public:
     
     void insert(Key k, Value v){
         unsigned int h = std::hash<Key>{}(k);
-        int i = 0;
-        for(; i < _capacity; i++){
+        for(int i = 0; i < _capacity; i++){
             if(container[(i + h) % _capacity].empty || container[(i + h) % _capacity].key == k){
                 if(container[(i + h) % _capacity].empty)
                     _size++;
@@ -142,7 +125,6 @@ public:
                 break;
             }
         }
-        std::cout << k << " " << h << " " << i << " " << _size << " " << _capacity * maxLoadFactor << "\n";
         if(_size >= _capacity * maxLoadFactor)
             reHash();
     }

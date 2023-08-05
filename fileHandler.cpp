@@ -17,14 +17,10 @@ void directory_check(){
 }
 
 vector<pair<string, vector<string>>> fileHandler::makeData() {
-    //cout << "hi" << endl;
-    directory_check();
+    //directory_check();
     vector<pair<string, vector<string>>> temp;
     vector<pair<string, vector<string>>> out;
     ifstream data("..\\EPA_SmartLocationDatabase_V3_Jan_2021_Final(1).csv");
-    //using absolute path works
-    /*I found the directory. My computer (Julie's) particularly likes to build the .exe file in cmake-build-debug
-     * so I always have to account for that. */
     if(data.is_open()) {
         string line;
         //cout << line << endl;
@@ -54,6 +50,18 @@ vector<pair<string, vector<string>>> fileHandler::makeData() {
                     temporary.second.push_back(arr[index]);
                 }
                 index += 1;
+            }
+            //need to check temporary to make sure it's ok. If not ok, function should continue rather than pushing back.
+            if(temporary.first == "" or temporary.first == " "){
+                continue;
+            }
+            if(temporary.second.size() != 19){
+                continue;
+            }
+            for(int a = 0; a < temporary.second.size(); a++){
+                if(temporary.second.at(a).find_first_not_of("0123456789.") != -1){
+                    continue;
+                }
             }
             out.push_back(temporary);
             /* (Is helpful test code but not in use at the moment.)
@@ -118,52 +126,34 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
     return fin;
      */
     vector<pair<string, vector<string>>> out;
-    cout << arr.size() << endl;
+    unordered_map<string, int> avgTaker;
     for(int i = 0; i < arr.size(); i++){
-        if(i == 1811){
-            cout << "begin " << i << endl;
-            cout << arr.at(1811).first << endl;
-        }
         bool found = false;
         for(int j = 0; j < out.size(); j++){
             if(out.at(j).first == arr.at(i).first){
                 found = true;
                 for(int m = 0; m < out.at(j).second.size(); m++){
-                    if(i == 1811){
-                        cout << "arr: " << arr.at(i).second.at(m) << endl;
-                    }
-                    if(i == 1811 and m == 13){
-                        cout << "out: " << out.at(j).second.at(13) << endl;
-                    }
                     float val = stof(arr.at(i).second.at(m));
-                    if(i == 1811 and m == 13){
-                        cout << "did we get this far?1" << endl;
-                    }
                     val += stof(out.at(j).second.at(m));
-                    if(i == 1811 and m == 13){
-                        cout << "did we get this far?2" << endl;
-                    }
                     out.at(j).second.at(m) = to_string(val);
-                    if(i == 1811 and m == 13){
-                        cout << "did we get this far?3" << endl;
-                    }
                 }
-                if(i == 1811){
-                    cout << "hi, after the m for loop" << endl;
-                }
+                avgTaker[out.at(j).first] += 1;
             }
         }
         if(!found){
-            if(i == 1811){
-                cout << "hi, from !found" << endl;
-            }
             pair<string, vector<string>> temp;
             temp.first = arr.at(i).first;
             temp.second = arr.at(i).second;
             out.push_back(temp);
+            avgTaker[temp.first] = 1;
         }
-        if(i == 1811){
-            cout << "hi from the i loop" << endl;
+    }
+    for(int z = 0; z < out.size(); z++){
+        auto it = avgTaker.find(out.at(z).first);
+        for(int y = 0; y < out.at(z).second.size(); y++){
+            float val = stof(out.at(z).second.at(y));
+            val /= it->second;
+            out.at(z).second.at(y) = to_string(val);
         }
     }
     return out;

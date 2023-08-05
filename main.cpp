@@ -38,7 +38,13 @@ int main(){
     t = clock() - t;
     cout << "Execution time to load data into open address hash map: " << t / 10000000.0 << "s" << endl;
     cout << "Now inserting data into separate chaining hash map." << endl;
-    SeparateChain
+    SeparateChain separateChain;
+    t = clock();
+    for(int i = 0; i < data.size(); i++){
+        separateChain.Insert(data.at(i).first, data.at(i).second);
+    }
+    t = clock() - t;
+    cout << "Execution time to load data into separate chaining hash map: " << t / 10000000.0 << "s" << endl;
     cin >> option;
     while(option != -1){
         printMenu();

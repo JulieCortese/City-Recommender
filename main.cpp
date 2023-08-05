@@ -6,6 +6,8 @@
 #include <ctime>
 #include <fstream>
 #include "fileHandler.h"
+#include "OpenAddressMap.h"
+#include "SeparateChain.h"
 using namespace std;
 
 void printMenu(){
@@ -25,8 +27,18 @@ int main(){
     cout << "loading data, please wait." << endl;
     vector<pair<string, vector<string>>> data = handle.makeData();
     data = handle.avgToCity(data); // please work
-    cout << "Data loaded." << endl;
+    cout << "Data brought in from file." << endl;
+    cout << "Now inserting data into open address hash map." << endl;
     // the file is big so you'll have to wait a couple seconds for it to load.
+    OpenAddressMap<string, vector<string>> openAddressMap;
+    clock_t t = clock();
+    for(int i = 0; i < data.size(); i++){
+        openAddressMap.insert(data.at(i).first, data.at(i).second);
+    }
+    t = clock() - t;
+    cout << "Execution time to load data into open address hash map: " << t / 10000000.0 << "s" << endl;
+    cout << "Now inserting data into separate chaining hash map." << endl;
+    SeparateChain
     cin >> option;
     while(option != -1){
         printMenu();

@@ -27,7 +27,7 @@ int main(){
     //handle.printAll(data);
     //cout << "we did that" << endl;
     data = handle.avgToCity(data); // please work
-    //handle.printAll(data);
+    handle.printAll(data);
     cout << "Data loaded." << endl;
     // the file is big, so you'll have to wait a couple seconds for it to load.
     cin >> option;

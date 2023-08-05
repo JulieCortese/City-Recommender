@@ -6,6 +6,9 @@
 #include <iostream>
 #include <direct.h>
 #include<limits.h>
+#include <string>
+#include <vector>
+#include <unordered_map>
 #include<sstream>
 using namespace std;
 
@@ -148,10 +151,20 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
             divideBy[temp.first] = 1;
         }
     }
-    for(auto it = divideBy.begin(); it != divideBy.end(); it++){
-        cout << it->first << endl;
+    for(int b = 1; b < out.size() - 1; b++){
+        int divider = divideBy[out.at(b).first];
+        for(int k = 0; k < out.at(b).second.size(); k++){
+            float val = stof(out.at(b).second.at(k));
+            val /= (float)divider;
+            if(val < 0){
+                val = -val;
+            }
+            out.at(b).second.at(k) = to_string(val);
+        }
     }
-    cout << divideBy.size() << endl;
+    string sub = out.at(175).second.at(16).substr(1, out.at(175).second.at(16).size() - 1);
+    out.at(175).second.at(16) = sub;
+    out.erase(out.begin());
     return out;
 }
 

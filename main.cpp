@@ -16,7 +16,7 @@ void printMenu(){
     cout << "1: Input qualities searching for in a city, get recommendation" << endl;
     cout << "2: Top five cities depending on qualities like above" << endl;
     cout << "3: Top city w/o qualities ranked" << endl;
-    cout << "4: Top 5 cities w/o qualities ranked?" << endl;
+    cout << "4: Top 5 cities w/o qualities ranked" << endl;
     // importance of each quality should be possible to weight by importance, but also to choose not to.
 }
 
@@ -120,7 +120,41 @@ int main(){
             cout << "Execution time for separate chaining hash map: " << t / 10000000.0 << "s" << endl;
         }
         if (option == 2){
+            vector<string> inputs;
+            string input;
+            printQualities();
+            bool fail = false;
+            for(int i = 0; i < 5; i++){
+                cin >> input;
+                if(input.find_first_not_of("0123456789") != -1){
+                    cout << "invalid input." << endl;
+                    fail = true;
+                    break;
+                }
+                if(stoi(input) > 19){
+                    fail = true;
+                    break;
+                }
+                for(int j = 0; j < inputs.size(); j++){
+                    if(inputs.at(j) == input){
+                        cout << "invalid input, you cannot repeat a number." << endl;
+                        fail = true;
+                        break;
+                    }
+                }
+                if(fail){
+                    break;
+                }
+                inputs.push_back(input);
+            }
+            if(fail){
+                continue;
+            }
+            for(int i = 0; i < inputs.size(); i++){
+                cout << inputs.at(i) << endl;
+            }
 
+            //like option 1, but instead of doing
             t = clock();
         }
         if (option == 3){

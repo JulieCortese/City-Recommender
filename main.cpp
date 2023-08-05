@@ -22,19 +22,26 @@ void printMenu(){
 
 void printQualities(){
     cout << "Qualities:" << endl;
-    cout << "1: High Population" << endl; //count HU? TotPop?
-    cout << "2: Lots of housing available" << endl; //HH
-    cout << "3: Low necessity of car" << endl; // this will correspond to high number Pct_AO0
-    cout << "4: High density (crowded, lots of people)" << endl; //D1A I think?
-    cout << "5: High amount of retail jobs" << endl; //The E8s for all the jobs
-    cout << "6: High amount of office jobs" << endl;
-    cout << "7: High amount of industrial jobs" << endl;
-    cout << "8: High amount of service jobs" << endl;
-    cout << "9: High amount of entertainment jobs" << endl;
-    cout << "10: High amount of education jobs" << endl;
-    cout << "11: High amount of health care jobs" << endl;
-    cout << "12: High amount of public administration jobs" << endl;
-    cout << "13: High amount of " << endl;
+    cout << "1: High Population" << endl; //TotPop, data.second.at(0)
+    cout << "2: Lots of housing available" << endl; //countHU, data.second.at(1)
+    cout << "3: Lots of households in the area" << endl; // HH, data.second.at(2)
+    cout << "4: Low necessity of car" << endl; // this will correspond to high number Pct_AO0, data.second.at(3)
+    cout << "5: High density (crowded, lots of people)" << endl; //D1A I think, data.second.at(12)
+    cout << "6: High amount of retail jobs" << endl; //E8_Ret, data.second.at(4)
+    cout << "7: High amount of office jobs" << endl; //E8_off, data.second.at(5)
+    cout << "8: High amount of industrial jobs" << endl; //data.second.at(6)
+    cout << "9: High amount of service jobs" << endl; //data.second.at(7)
+    cout << "10: High amount of entertainment jobs" << endl; //data.second.at(8)
+    cout << "11: High amount of education jobs" << endl; //data.second.at(9)
+    cout << "12: High amount of health care jobs" << endl; //data.second.at(10)
+    cout << "13: High amount of public administration jobs" << endl; //data.second.at(11)
+    cout << "14: Ability to use a car" << endl; //data.second.at(13)
+    cout << "15: High street intersection density " << endl; //D3B, data.second.at(14)
+    cout << "16: High transit stop accessibility" << endl; //D4A, data.second.at(15)
+    cout << "17: Short car commutes between workplaces and homes" << endl; //D5AE, data.second.at(16)
+    cout << "18: Short transit commutes between workplaces and homes" << endl; // D5BE, data.second.at(17)
+    cout << "19: National Walkability index" << endl; //NatWalkInd, data.second.at(18)
+    cout << "Please pick a top five and input them in order, first being most important and fifth being the least." << endl;
 }
 
 int main(){
@@ -45,6 +52,7 @@ int main(){
     vector<pair<string, vector<string>>> data = handle.makeData();
     data = handle.avgToCity(data); // please work
     cout << "Data brought in from file." << endl;
+    /*
     cout << "Now inserting data into open address hash map." << endl;
     // the file is big so you'll have to wait a couple seconds for it to load.
     OpenAddressMap<string, vector<string>> openAddressMap;
@@ -54,9 +62,10 @@ int main(){
     }
     t = clock() - t;
     cout << "Execution time to load data into open address hash map: " << t / 10000000.0 << "s" << endl;
+     */
     cout << "Now inserting data into separate chaining hash map." << endl;
     SeparateChain separateChain;
-    t = clock();
+    clock_t t = clock();
     for(int i = 0; i < data.size(); i++){
         separateChain.Insert(data.at(i).first, data.at(i).second);
     }
@@ -68,9 +77,7 @@ int main(){
         cin >> option;
         t = clock();
         // do stuff depending on option.
-        if (option == 1){
-
-        }
+        if (option == 1){}
         if (option == 2){}
         if (option == 3){}
         if (option == 4){}

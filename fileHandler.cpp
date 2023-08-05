@@ -76,7 +76,6 @@ vector<pair<string, vector<string>>> fileHandler::makeData() {
             }
         }
     }
-
     return out;
 }
 
@@ -155,6 +154,7 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
             out.at(b).second.at(k) = to_string(val);
         }
     }
+    // the 3 lines about the last city in the vector are to manually fix a weirdly specific error in which that one number refused to be positive.
     string sub = out.at(175).second.at(16).substr(1, out.at(175).second.at(16).size() - 1);
     out.at(175).second.at(16) = sub;
     out.erase(out.begin());

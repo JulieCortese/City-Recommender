@@ -23,45 +23,45 @@ vector<pair<string, vector<string>>> fileHandler::makeData() {
     vector<pair<string, vector<string>>> out;
     ifstream data("..\\EPA_SmartLocationDatabase_V3_Jan_2021_Final(1).csv");
     //using absolute path works
-     /*I found the directory. My computer (Julie's) particularly likes to build the .exe file in cmake-build-debug
-      * so I always have to account for that. */
+    /*I found the directory. My computer (Julie's) particularly likes to build the .exe file in cmake-build-debug
+     * so I always have to account for that. */
     if(data.is_open()) {
         string line;
-            //cout << line << endl;
-            string arr[117]; // I used the program to check how many columns there were. It's 117.
-            while(getline(data, line)) {
-                istringstream stream1(line);
-                int index = 0;
-                string piece;
-                pair<string, vector<string>> temporary;
-                while (getline(stream1, piece, ',')) {
-                    if (index >= 117) {
-                        break;
-                    }
-                    if (piece == "" or piece == " ") {
-                        //cout << index; (was helpful test code, now unnecessary)
-                        break;
-                    }
-                    arr[index] = piece;
-                    if (index == 8) {
-                        temporary.first = arr[index];
-                    } else if (index == 18 or index == 19 or index == 20 or index == 23 or index == 39 or index == 40) {
-                        temporary.second.push_back(arr[index]);
-                    } else if ((40 < index and index < 47) or index == 51 or index == 83 or index == 86 or
-                               index == 92) {
-                        temporary.second.push_back(arr[index]);
-                    } else if (index == 99 or index == 101 or index == 114) {
-                        temporary.second.push_back(arr[index]);
-                    }
-                    index += 1;
+        //cout << line << endl;
+        string arr[117]; // I used the program to check how many columns there were. It's 117.
+        while(getline(data, line)) {
+            istringstream stream1(line);
+            int index = 0;
+            string piece;
+            pair<string, vector<string>> temporary;
+            while (getline(stream1, piece, ',')) {
+                if (index >= 117) {
+                    break;
                 }
-                out.push_back(temporary);
-                /* (Is helpful test code but not in use at the moment.)
-                for(int i = 0; i < 117; i++){
-                    cout << arr[i] << " at " << i << endl;
+                if (piece == "" or piece == " ") {
+                    //cout << index; (was helpful test code, now unnecessary)
+                    break;
                 }
-                 */
+                arr[index] = piece;
+                if (index == 8) {
+                    temporary.first = arr[index];
+                } else if (index == 18 or index == 19 or index == 20 or index == 23 or index == 39 or index == 40) {
+                    temporary.second.push_back(arr[index]);
+                } else if ((40 < index and index < 47) or index == 51 or index == 83 or index == 86 or
+                           index == 92) {
+                    temporary.second.push_back(arr[index]);
+                } else if (index == 99 or index == 101 or index == 114) {
+                    temporary.second.push_back(arr[index]);
+                }
+                index += 1;
             }
+            out.push_back(temporary);
+            /* (Is helpful test code but not in use at the moment.)
+            for(int i = 0; i < 117; i++){
+                cout << arr[i] << " at " << i << endl;
+            }
+             */
+        }
         //}
     }
     for(int i = 0; i < out.size(); i++){
@@ -120,24 +120,61 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
     vector<pair<string, vector<string>>> out;
     cout << arr.size() << endl;
     for(int i = 0; i < arr.size(); i++){
-        cout << "begin" << endl;
+        if(i == 1811){
+            cout << "begin " << i << endl;
+            cout << arr.at(1811).first << endl;
+        }
         bool found = false;
         for(int j = 0; j < out.size(); j++){
             if(out.at(j).first == arr.at(i).first){
-               found = true;
-               for(int m = 0; m < out.at(j).second.size(); m++){
-                   float val = stof(arr.at(i).second.at(m));
-                   val += stof(out.at(j).second.at(m));
-                   out.at(j).second.at(m) = to_string(val);
-               }
+                found = true;
+                for(int m = 0; m < out.at(j).second.size(); m++){
+                    if(i == 1811){
+                        cout << "arr: " << arr.at(i).second.at(m) << endl;
+                    }
+                    if(i == 1811 and m == 13){
+                        cout << "out: " << out.at(j).second.at(13) << endl;
+                    }
+                    float val = stof(arr.at(i).second.at(m));
+                    if(i == 1811 and m == 13){
+                        cout << "did we get this far?1" << endl;
+                    }
+                    val += stof(out.at(j).second.at(m));
+                    if(i == 1811 and m == 13){
+                        cout << "did we get this far?2" << endl;
+                    }
+                    out.at(j).second.at(m) = to_string(val);
+                    if(i == 1811 and m == 13){
+                        cout << "did we get this far?3" << endl;
+                    }
+                }
+                if(i == 1811){
+                    cout << "hi, after the m for loop" << endl;
+                }
             }
         }
         if(!found){
+            if(i == 1811){
+                cout << "hi, from !found" << endl;
+            }
             pair<string, vector<string>> temp;
             temp.first = arr.at(i).first;
             temp.second = arr.at(i).second;
             out.push_back(temp);
         }
+        if(i == 1811){
+            cout << "hi from the i loop" << endl;
+        }
     }
     return out;
+}
+
+void fileHandler::printAll(vector<pair<string, vector<string>>> &arr) {
+    for(int i = 0; i < arr.size(); i++){
+        cout << i << ": " << arr.at(i).first << endl;
+        for(int j = 0; j < arr.at(i).second.size(); j++){
+            cout << arr.at(i).second.at(j) << ", ";
+        }
+        cout << endl;
+    }
 }

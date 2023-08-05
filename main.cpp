@@ -123,12 +123,10 @@ int main(){
         if (option == 3){
 
             t = clock();
+            string top = separateChain.FindTop();
+            cout << "The top city based on walkability is " << top << endl;
         }
         if (option == 4){
-
-            t = clock();
-        }
-        if (option == 5){
 
             t = clock();
         }

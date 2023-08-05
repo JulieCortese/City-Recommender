@@ -58,7 +58,7 @@ public:
     void insert(Key, Value); //inserts value at key
     bool erase(Key);         //removes element at key, returns if an element was removed
     bool contains(Key);      //returns if an element is present at key
-    Value operator[](Key);   //returns value at key
+    Value& operator[](Key);   //returns value at key
     */
 
     OpenAddressMap(){

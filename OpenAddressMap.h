@@ -2,6 +2,7 @@
 //#pragma once
 #include <functional> //for std::hash
 #include <vector>
+#include <iostream>
 #include <stdexcept>
 
 template<typename Key, typename Value>
@@ -37,7 +38,6 @@ private:
         //expands container
         while (_size >= container.capacity() * maxLoadFactor){
             container.push_back(entry());
-            i++;
         }
 
         //initializes the rest of container
@@ -57,7 +57,17 @@ private:
 
     }
 
-
+    void writeEntry(int i, Key k, Value v){
+        if(container[i].key != k)
+            _size++;
+        container[i].empty = false;
+        container[i].fresh = false;
+        container[i].key = k;
+        container[i].value = v;
+        //std::cout << i << " " << k << " " << v[0] << " " << _size << "\n";
+        if(_size >= _capacity * maxLoadFactor)
+            reHash();
+    }
 
 public:
 
@@ -116,17 +126,10 @@ public:
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
             if(container[(i + h) % _capacity].empty || container[(i + h) % _capacity].key == k){
-                if(container[(i + h) % _capacity].empty)
-                    _size++;
-                container[(i + h) % _capacity].fresh = false;
-                container[(i + h) % _capacity].empty = false;
-                container[(i + h) % _capacity].key = k;
-                container[(i + h) % _capacity].value = v;
+                writeEntry(i + h % _capacity, k, v);
                 break;
             }
         }
-        if(_size >= _capacity * maxLoadFactor)
-            reHash();
     }
 
 
@@ -135,6 +138,7 @@ public:
         for(int i = 0; i < _capacity; i++){
             if(container[(i + h) % _capacity].key == k){
                 container[(i + h) % _capacity].empty = true;
+                _size--;
                 return true;
             }
             if(container[(i + h) % _capacity].fresh)
@@ -173,10 +177,7 @@ public:
                 break;
         }
 
-        //inserts an entry at bookmark
-        container[bookmark].fresh = false;
-        container[bookmark].empty = false;
-        container[bookmark].key = k;
+        writeEntry(bookmark, k, Value());
         return container[bookmark].value;
     }
 

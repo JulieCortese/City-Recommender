@@ -1,34 +1,31 @@
 //Created by Lia 8/2/23
 #pragma once
 #include <vector>
-#include <list>
 #include <utility>
 #include <functional>
-template<typename T>
 class SeparateChain
 {
-    std::vector<std::list<std::pair<T,T>>> container;
+    std::vector<std::vector<std::pair<std::string, std::string>>> container;
     int capacity = 2;
     int size = 0;
     float maxLoadFactor = 0.8;
 
     void reHash()
     {
-        std::vector<std::list<std::pair<T,T>>> temp = container;
+        std::vector<std::vector<std::pair<std::string,std::string>>> temp = container;
         capacity *= 2;
         size = 0;
+        container = {};
         for (int i = 0; i < capacity; i++)
         {
-            container[i] = {};
+            container.push_back({});
         }
+
         for (int i = 0; i < temp.size(); i++)
         {
-            if (!temp[i].empty())
+            for (int j = 0; j < temp[i].size(); j++)
             {
-                for (auto it = temp[i].begin(); it < temp[i].end(); it++)
-                {
-                    container.Insert(temp[i].first, temp[i].second);
-                }
+                Insert(temp[i][j].first, temp[i][j].second);
             }
         }
 
@@ -41,14 +38,14 @@ public:
     {
         for (int i = 0; i < capacity; i++)
         {
-            container[i] = {};
+            container.push_back({});
         }
     }
 
-    void Insert(T key, T value)
+    void Insert(std::string key, std::string value)
     {
-        int index = std::hash<T>(key) % capacity;
-        container[index].insert(std::make_pair(key, value));
+        int index = std::hash<std::string>{}(key) % capacity;
+        container[index].push_back(std::make_pair(key, value));
         size++;
 
         if ((float)size / capacity >= maxLoadFactor)
@@ -57,18 +54,15 @@ public:
         }
 
     }
-    T find(T key)
+    std::string Find(std::string key)
     {
         for (int i = 0; i < container.size(); i++)
         {
-            if (!container[i].empty())
+            for (int j = 0; j < container[i].size(); j++)
             {
-                for (auto it = container[i].begin(); it < container[i].end(); it++)
+                if (container[i][j].first == key)
                 {
-                    if (container[i].first == key)
-                    {
-                        return container[i].second;
-                    }
+                    return container[i][j].second;
                 }
             }
         }

@@ -16,13 +16,17 @@ private:
 
 
     std::vector<entry> container = {};
+    //std::vector<Iter> iterators = {};
 
     int _size = 0;
     int _capacity = 16; //this is arbitrary
     float maxLoadFactor = 0.8;
 
     void reHash(){
-        std::vector<entry> temp = container;
+        std::vector<entry> temp = std::vector<entry>(_capacity);
+        for (int j = 0; j < _capacity; j++){
+            temp[j] = container[j];
+        }
         int i = 0;
 
         //empties container
@@ -31,7 +35,7 @@ private:
         }
 
         //expands container
-        while ((float)_size / container.capacity() >= maxLoadFactor){
+        while (_size >= container.capacity() * maxLoadFactor){
             container.push_back(entry());
             i++;
         }
@@ -44,9 +48,11 @@ private:
         _capacity = container.capacity();
         _size = 0;
 
+
         //reinserts entries
-        for (entry e : temp){
-            insert(e.key, e.value);
+        for(entry e : temp){
+            if(!e.empty)
+                insert(e.key, e.value);
         }
 
     }
@@ -73,8 +79,39 @@ public:
         }
         _capacity = container.capacity();
     }
-
-
+    /*
+    class Iter{
+    private:
+        int index;
+        int direction;
+        
+    public:
+        Iter(int i, int d){
+        
+        }
+        int getIndex(){
+            return index;
+        }
+        void operator++(){
+            do{
+                index += direction;
+            }while(container[index].empty);
+        }
+        Value& operator*(){
+            return container[index].value;
+        }
+        bool operator==(Iter lhs){
+            return index == lhs.getIndex();
+        }
+        bool operator<(Iter lhs){
+            return direction * index < direction * lhs.getIndex();
+        }
+        bool operator>(Iter lhs){
+            return direction * index > direction * lhs.getIndex();
+        }
+    }
+    */
+    
     void insert(Key k, Value v){
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
@@ -85,10 +122,10 @@ public:
                 container[(i + h) % _capacity].empty = false;
                 container[(i + h) % _capacity].key = k;
                 container[(i + h) % _capacity].value = v;
-                return;
+                break;
             }
         }
-        if((float)_size / _capacity >= maxLoadFactor)
+        if(_size >= _capacity * maxLoadFactor)
             reHash();
     }
 
@@ -171,5 +208,10 @@ public:
             return 1;
         return 0;
     }
-
+/*
+    Iter begin(){
+        Iter it = new Iter();
+        
+    }
+*/
 };

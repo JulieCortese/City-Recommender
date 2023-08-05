@@ -24,11 +24,9 @@ int main(){
     fileHandler handle;
     cout << "loading data, please wait." << endl;
     vector<pair<string, vector<string>>> data = handle.makeData();
-    cout << "step 1 done" << endl;
     data = handle.avgToCity(data); // please work
     cout << "Data loaded." << endl;
-    // the file is big, so you'll have to wait a couple seconds for it to load.
-    cout << "hi" << endl;
+    // the file is big so you'll have to wait a couple seconds for it to load.
     cin >> option;
     while(option != -1){
         printMenu();

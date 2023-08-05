@@ -13,4 +13,5 @@ class fileHandler{
 public:
     vector<pair<string, vector<string>>> makeData();
     vector<pair<string, vector<string>>> avgToCity(vector<pair<string, vector<string>>>& arr);
+    void printAll(vector<pair<string, vector<string>>>& arr);
 };

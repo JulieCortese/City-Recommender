@@ -12,15 +12,8 @@
 #include<sstream>
 using namespace std;
 
-void directory_check(){
-    char buff[PATH_MAX];
-    _getcwd( buff, PATH_MAX );
-    string current_working_dir(buff);
-    //cout << current_working_dir << endl;
-}
 
 vector<pair<string, vector<string>>> fileHandler::makeData() {
-    //directory_check();
     vector<pair<string, vector<string>>> temp;
     vector<pair<string, vector<string>>> out;
     ifstream data("..\\EPA_SmartLocationDatabase_V3_Jan_2021_Final(1).csv");

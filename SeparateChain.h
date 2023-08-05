@@ -107,6 +107,7 @@ public:
                 {
                     key = container[i][j].first;
                 }
+                sum = 0;
             }
 
         }

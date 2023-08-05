@@ -126,7 +126,7 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
     return fin;
      */
     vector<pair<string, vector<string>>> out;
-    unordered_map<string, int> avgTaker;
+    unordered_map<string, int> divideBy;
     for(int i = 0; i < arr.size(); i++){
         bool found = false;
         for(int j = 0; j < out.size(); j++){
@@ -137,7 +137,7 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
                     val += stof(out.at(j).second.at(m));
                     out.at(j).second.at(m) = to_string(val);
                 }
-                avgTaker[out.at(j).first] += 1;
+                divideBy[out.at(j).first] += 1;
             }
         }
         if(!found){
@@ -145,11 +145,11 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
             temp.first = arr.at(i).first;
             temp.second = arr.at(i).second;
             out.push_back(temp);
-            avgTaker[temp.first] = 1;
+            divideBy[temp.first] = 1;
         }
     }
     for(int z = 0; z < out.size(); z++){
-        auto it = avgTaker.find(out.at(z).first);
+        auto it = divideBy.find(out.at(z).first);
         for(int y = 0; y < out.at(z).second.size(); y++){
             float val = stof(out.at(z).second.at(y));
             val /= it->second;

@@ -23,16 +23,11 @@ int main(){
     cout << "hello" << endl;
     fileHandler handle;
     cout << "loading data, please wait." << endl;
-    vector<pair<string, vector<string>>>& data = handle.makeData();
+    vector<pair<string, vector<string>>> data = handle.makeData();
+    cout << "step 1 done" << endl;
+    data = handle.avgToCity(data); // please work
     cout << "Data loaded." << endl;
     // the file is big, so you'll have to wait a couple seconds for it to load.
-    ifstream file("..\\inputData.csv");
-    if(!file.is_open()){
-        ofstream file2 ("..\\inputData.csv");
-        handle.createInput(file2); // this function doesn't work yet. some kind of error, I think segfault?
-        cout << "file made?" << endl;
-
-    }
     cout << "hi" << endl;
     cin >> option;
     while(option != -1){
@@ -40,9 +35,13 @@ int main(){
         cin >> option;
         clock_t t = clock();
         // do stuff depending on option.
+        if (option == 1){}
+        if (option == 2){}
+        if (option == 3){}
+        if (option == 4){}
+        if (option == 5){}
         t = clock() - t;
-        cout << "Execution time: " << t / 1000000.0 << "s" << endl << endl;
+        cout << "Execution time: " << t / 10000000.0 << "s" << endl << endl;
     }
-
     return 0;
 }

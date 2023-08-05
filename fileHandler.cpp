@@ -16,7 +16,7 @@ void directory_check(){
     //cout << current_working_dir << endl;
 }
 
-vector<pair<string, vector<string>>>& fileHandler::makeData() {
+vector<pair<string, vector<string>>> fileHandler::makeData() {
     //cout << "hi" << endl;
     directory_check();
     vector<pair<string, vector<string>>> temp;
@@ -66,21 +66,25 @@ vector<pair<string, vector<string>>>& fileHandler::makeData() {
     }
     for(int i = 0; i < out.size(); i++){
         if(out.at(i).first != "" and out.at(i).first != " "){
-            string temp = out.at(i).first.substr(1, out.at(i).first.size() - 1);
-            out.at(i).first = temp;
+            if(out.at(i).first.at(0) == '"') {
+                string temp = out.at(i).first.substr(1, out.at(i).first.size() - 1);
+                out.at(i).first = temp;
+            }
         }
     }
+
     return out;
 }
 
-unordered_map<string, vector<string>>& fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
+vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, vector<string>>>& arr){
+    /*
     unordered_map<string, vector<string>> fin;
-    unordered_map<string, float> temp; // I'm hoping that everything can be added.
+    unordered_map<string, float> out; // I'm hoping that everything can be added.
     for(int i = 0; i < arr.size(); i++){
         if(fin.find(arr.at(i).first) == fin.end()){
             fin[arr.at(i).first] = arr.at(i).second;
-        }else if(temp.find(arr[i].first) == temp.end()){
-            // ok so we want to add the values in fin and store the number to divide by to get avg in temp
+        }else if(out.find(arr[i].first) == out.end()){
+            // ok so we want to add the values in fin and store the number to divide by to get avg in out
             auto it = fin.find(arr[i].first);
             for(int j = 0; j < it->second.size(); j++){
                 float value = stoi(arr[i].second.at(j));
@@ -88,10 +92,10 @@ unordered_map<string, vector<string>>& fileHandler::avgToCity(vector<pair<string
                 val2 += value;
                 it->second.at(j) = to_string(val2);
             }
-            temp[it->first] = 2;
+            out[it->first] = 2;
         }
         else{
-            // this is if there's something in fin, but not temp. add vals in fin and num to divide by is 2.
+            // this is if there's something in fin, but not out. add vals in fin and num to divide by is 2.
             auto it = fin.find(arr[i].first);
             for(int j = 0; j < it->second.size(); j++){
                 float value = stoi(arr[i].second.at(j));
@@ -99,11 +103,11 @@ unordered_map<string, vector<string>>& fileHandler::avgToCity(vector<pair<string
                 val2 += value;
                 it->second.at(j) = to_string(val2);
             }
-            temp[it->first] += 1;
+            out[it->first] += 1;
         }
         // if there's already a key for the city, we want to add and then take avg.
     }
-    for(auto it = temp.begin(); it != temp.end(); it++){
+    for(auto it = out.begin(); it != out.end(); it++){
         auto it2 = fin.find(it->first);
         for(int m = 0; m < it2->second.size(); m++){
             float val = stof(it2->second.at(m));
@@ -112,19 +116,28 @@ unordered_map<string, vector<string>>& fileHandler::avgToCity(vector<pair<string
         }
     }
     return fin;
-}
-
-void fileHandler::createInput(ofstream &file) { //this'll be one time use for me to make the compressed file
-    vector<pair<string, vector<string>>> temp;
-    temp = makeData();
-    unordered_map<string, vector<string>> toFile = avgToCity(temp);
-    // then write into new file
-    ofstream newFile("..\\input.csv");
-    for(auto it = toFile.begin(); it != toFile.end(); it++){
-        newFile << it->first << ',';
-        for(int i = 0; i < it->second.size(); i++){
-            newFile << it->second.at(i) << ',';
+     */
+    vector<pair<string, vector<string>>> out;
+    cout << arr.size() << endl;
+    for(int i = 0; i < arr.size(); i++){
+        cout << "begin" << endl;
+        bool found = false;
+        for(int j = 0; j < out.size(); j++){
+            if(out.at(j).first == arr.at(i).first){
+               found = true;
+               for(int m = 0; m < out.at(j).second.size(); m++){
+                   float val = stof(arr.at(i).second.at(m));
+                   val += stof(out.at(j).second.at(m));
+                   out.at(j).second.at(m) = to_string(val);
+               }
+            }
         }
-        newFile << endl;
+        if(!found){
+            pair<string, vector<string>> temp;
+            temp.first = arr.at(i).first;
+            temp.second = arr.at(i).second;
+            out.push_back(temp);
+        }
     }
+    return out;
 }

@@ -27,7 +27,7 @@ class SeparateChain
             {
                 for (auto it = temp[i].begin(); it < temp[i].end(); it++)
                 {
-                    insert(temp[i].first, temp[i].second);
+                    container.Insert(temp[i].first, temp[i].second);
                 }
             }
         }
@@ -45,7 +45,7 @@ public:
         }
     }
 
-    void insert(T key, T value)
+    void Insert(T key, T value)
     {
         int index = std::hash<T>(key) % capacity;
         container[index].insert(std::make_pair(key, value));

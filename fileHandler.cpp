@@ -4,8 +4,6 @@
 #include "fileHandler.h"
 #include <fstream>
 #include <iostream>
-#include <direct.h>
-#include<limits.h>
 #include <string>
 #include <vector>
 #include <unordered_map>

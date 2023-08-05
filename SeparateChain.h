@@ -74,18 +74,42 @@ public:
     std::string FindTop()
     {
         std::string top = "-1";
-        std::string NatWlkInd = "-1";
+        float NatWlkInd = -1;
         for (int i = 0; i < container.size(); i++)
         {
             for (int j = 0; j < container[i].size(); j++)
             {
-                if (NatWlkInd < container[i][j].second[18])
+                if (NatWlkInd < std::stof(container[i][j].second[18]))
                 {
                     top = container[i][j].first;
-                    NatWlkInd =  container[i][j].second[18];
+                    NatWlkInd =  std::stof(container[i][j].second[18]);
                 }
             }
         }
-        return top + ". National Walkability Index: " + NatWlkInd;
+        return top + ". National Walkability Index: " + to_string(NatWlkInd);
+    }
+
+    std::string FindRank(std::vector<std::string> index)
+    {
+        float max = 0;
+        float sum = 0;
+        int factor = 5;
+        std::string key;
+        for (int i = 0; i < container.size(); i++)
+        {
+            for (int j = 0; j < container[i].size(); j++)
+            {
+                for(int k = 0; i < 5; i++){
+                    sum += stof(container[i][j].second[stoi(index[i]) - 1]) * factor;
+                    factor--;
+                }
+                if (sum > max)
+                {
+                    key = container[i][j].first;
+                }
+            }
+
+        }
+        return key;
     }
 };

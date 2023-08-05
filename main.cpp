@@ -26,15 +26,15 @@ void printQualities(){
     cout << "2: Lots of housing available" << endl; //countHU, data.second.at(1)
     cout << "3: Lots of households in the area" << endl; // HH, data.second.at(2)
     cout << "4: Low necessity of car" << endl; // this will correspond to high number Pct_AO0, data.second.at(3)
-    cout << "5: High density (crowded, lots of people)" << endl; //D1A I think, data.second.at(12)
-    cout << "6: High amount of retail jobs" << endl; //E8_Ret, data.second.at(4)
-    cout << "7: High amount of office jobs" << endl; //E8_off, data.second.at(5)
-    cout << "8: High amount of industrial jobs" << endl; //data.second.at(6)
-    cout << "9: High amount of service jobs" << endl; //data.second.at(7)
-    cout << "10: High amount of entertainment jobs" << endl; //data.second.at(8)
-    cout << "11: High amount of education jobs" << endl; //data.second.at(9)
-    cout << "12: High amount of health care jobs" << endl; //data.second.at(10)
-    cout << "13: High amount of public administration jobs" << endl; //data.second.at(11)
+    cout << "5: High amount of retail jobs" << endl; //E8_Ret, data.second.at(4)
+    cout << "6: High amount of office jobs" << endl; //E8_off, data.second.at(5)
+    cout << "7: High amount of industrial jobs" << endl; //data.second.at(6)
+    cout << "8: High amount of service jobs" << endl; //data.second.at(7)
+    cout << "9: High amount of entertainment jobs" << endl; //data.second.at(8)
+    cout << "10: High amount of education jobs" << endl; //data.second.at(9)
+    cout << "11: High amount of health care jobs" << endl; //data.second.at(10)
+    cout << "12: High amount of public administration jobs" << endl; //data.second.at(11)
+    cout << "13: High density (crowded, lots of people)" << endl; //D1A I think, data.second.at(12)
     cout << "14: Ability to use a car" << endl; //data.second.at(13)
     cout << "15: High street intersection density " << endl; //D3B, data.second.at(14)
     cout << "16: High transit stop accessibility" << endl; //D4A, data.second.at(15)
@@ -114,7 +114,10 @@ int main(){
             // index 2nd most important, multiply by 4, 3rd multiplied by 3, 4th multiply by 2, 5th by itself, and add them all up
             // city with biggest sum is outputted.t = clock();
             t = clock();
-
+            string sctop = separateChain.FindRank(inputs);
+            t = clock() - t;
+            cout << "Based on your inputs the top ranked city is " << sctop << endl;
+            cout << "Execution time for separate chaining hash map: " << t / 10000000.0 << "s" << endl;
         }
         if (option == 2){
 
@@ -124,7 +127,9 @@ int main(){
 
             t = clock();
             string top = separateChain.FindTop();
+            t = clock() - t;
             cout << "The top city based on walkability is " << top << endl;
+            cout << "Execution time for separate chaining hash map: " << t / 10000000.0 << "s" << endl;
         }
         if (option == 4){
 

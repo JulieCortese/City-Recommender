@@ -45,6 +45,7 @@ private:
         }
 
         capacity = container.capacity();
+        size = 0;
 
         //reinserts entries
         for (entry e : temp){
@@ -73,11 +74,12 @@ public:
 
 
     void insert(Key k, Value v){
-        int h = std::hash<Key>{}(k);
+        unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].empty || container[(i + h) % capacity].key == k){
                 if(container[(i + h) % capacity].empty)
                     size++;
+                std::cout << h % capacity;
                 container[(i + h) % capacity].fresh = false;
                 container[(i + h) % capacity].empty = false;
                 container[(i + h) % capacity].key = k;
@@ -91,7 +93,7 @@ public:
 
 
     bool erase(Key k){
-        int h = std::hash<Key>{}(k);
+        unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k){
                 container[(i + h) % capacity].empty = true;
@@ -108,7 +110,7 @@ public:
 
     bool contains(Key k){
 
-        int h = std::hash<Key>{}(k);
+        unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k && !container[(i + h) % capacity].empty)
                 return true;
@@ -119,7 +121,7 @@ public:
     }
 
     Value& operator[](Key k){
-        int h = std::hash<Key>{}(k);
+        unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k)
                 return container[(i + h) % capacity].value;

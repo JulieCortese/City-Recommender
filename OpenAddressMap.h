@@ -2,14 +2,10 @@
 //#pragma once
 #include <functional> //for std::hash
 #include <vector>
-#include <stdexcept>
-#include <iostream>
 
 template<typename Key, typename Value>
 class OpenAddressMap{
 private:
-
-
     struct entry{
         Key key;
         Value value;
@@ -21,7 +17,7 @@ private:
     std::vector<entry> container = {};
 
     int size = 0;
-    int capacity = 16;
+    int capacity = 16; //this is arbitrary
     float maxLoadFactor = 0.8;
 
     void reHash(){
@@ -79,7 +75,6 @@ public:
             if(container[(i + h) % capacity].empty || container[(i + h) % capacity].key == k){
                 if(container[(i + h) % capacity].empty)
                     size++;
-                std::cout << h % capacity;
                 container[(i + h) % capacity].fresh = false;
                 container[(i + h) % capacity].empty = false;
                 container[(i + h) % capacity].key = k;
@@ -109,7 +104,6 @@ public:
 
 
     bool contains(Key k){
-
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k && !container[(i + h) % capacity].empty)
@@ -122,14 +116,26 @@ public:
 
     Value& operator[](Key k){
         unsigned int h = std::hash<Key>{}(k);
+        int bookmark = -1;
+
         for(int i = 0; i < capacity; i++){
             if(container[(i + h) % capacity].key == k)
                 return container[(i + h) % capacity].value;
+
+            //bookmarks the first empty slot
+            if(container[(i + h) % capacity].empty && bookmark == -1)
+                bookmark = (i + h) % capacity;
+
             if(container[(i + h) % capacity].fresh)
-                throw std::runtime_error("Key is not present in map.");
+                break;
         }
 
-        throw std::runtime_error("Key is not present in map.");
+        //inserts an entry at bookmark
+        container[bookmark].fresh = false;
+        container[bookmark].empty = false;
+        container[bookmark].key = k;
+        return container[bookmark].value;
     }
+
 
 };

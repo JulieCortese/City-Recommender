@@ -1,8 +1,7 @@
 // Created by Lorraine, 8/2/2023
-//#pragma once
+#pragma once
 #include <functional> //for std::hash
 #include <vector>
-#include <iostream>
 #include <stdexcept>
 
 template<typename Key, typename Value>
@@ -28,7 +27,6 @@ private:
 
         //copy to temp
         for (int j = 0; j < _capacity; j++){
-            std::cout << "copying " << j << "\n";
             temp[j].empty = container[j].empty;
             temp[j].fresh = container[j].fresh;
             temp[j].key = container[j].key;
@@ -38,13 +36,12 @@ private:
 
         //empties container
         for (; i < container.capacity(); i++){
-            std::cout << "emptying " << i << "\n";
-            container[i] = entry();
+            container[i].empty = true;
+            container[i].fresh = true;
         }
 
         //expands container
         while (_size >= container.capacity() * maxLoadFactor){
-            std::cout << "expanding" << "\n";
             container.push_back(entry());
         }
 
@@ -53,8 +50,8 @@ private:
 
         //initializes the rest of container
         for(; i < container.capacity(); i++){
-            //std::cout << "initializing " << i << " " << _capacity << " " << container.capacity() << "\n";
-            container[i] = entry();
+            container[i].fresh = true;
+            container[i].empty = true;
         }
 
 
@@ -69,7 +66,6 @@ private:
     void writeEntry(int i, Key k, Value v){
         if(container[i].key != k)
             _size++;
-        //std::cout << i << " " << k << " " << v[0] << " " << _size << "\n";
         container[i].empty = false;
         container[i].fresh = false;
         container[i].key = k;

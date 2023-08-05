@@ -137,7 +137,7 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
                     val += stof(out.at(j).second.at(m));
                     out.at(j).second.at(m) = to_string(val);
                 }
-                divideBy[out.at(j).first] += 1;
+                divideBy[out.at(j).first] = divideBy[out.at(j).first] + 1;
             }
         }
         if(!found){
@@ -148,14 +148,10 @@ vector<pair<string, vector<string>>> fileHandler::avgToCity(vector<pair<string, 
             divideBy[temp.first] = 1;
         }
     }
-    for(int z = 0; z < out.size(); z++){
-        auto it = divideBy.find(out.at(z).first);
-        for(int y = 0; y < out.at(z).second.size(); y++){
-            float val = stof(out.at(z).second.at(y));
-            val /= it->second;
-            out.at(z).second.at(y) = to_string(val);
-        }
+    for(auto it = divideBy.begin(); it != divideBy.end(); it++){
+        cout << it->first << endl;
     }
+    cout << divideBy.size() << endl;
     return out;
 }
 

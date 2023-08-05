@@ -112,7 +112,7 @@ int main(){
             // should start the clock once we start searching the hash maps.
             // using address map and chain map, take the index of first most important, multiply by 5,
             // index 2nd most important, multiply by 4, 3rd multiplied by 3, 4th multiply by 2, 5th by itself, and add them all up
-            // city with biggest sum is outputted.
+            // city with biggest sum is outputted.t = clock();
             t = clock();
 
         }

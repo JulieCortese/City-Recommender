@@ -62,7 +62,7 @@ int main(){
     }
     t = clock() - t;
     cout << "Execution time to load data into open address hash map: " << t / 10000000.0 << "s" << endl;
-     */
+    */
     cout << "Now inserting data into separate chaining hash map." << endl;
     SeparateChain separateChain;
     clock_t t = clock();
@@ -71,19 +71,63 @@ int main(){
     }
     t = clock() - t;
     cout << "Execution time to load data into separate chaining hash map: " << t / 10000000.0 << "s" << endl;
+    printMenu();
     cin >> option;
     while(option != -1){
-        printMenu();
-        cin >> option;
-        t = clock();
         // do stuff depending on option.
-        if (option == 1){}
-        if (option == 2){}
-        if (option == 3){}
-        if (option == 4){}
-        if (option == 5){}
+        if (option == 1){
+            vector<string> inputs;
+            string input;
+            printQualities();
+            bool fail = false;
+            for(int i = 0; i < 5; i++){
+                cin >> input;
+                if(input.find_first_not_of("0123456789") != -1){
+                    cout << "invalid input." << endl;
+                    fail = true;
+                    break;
+                }
+                for(int j = 0; j < inputs.size(); j++){
+                    if(inputs.at(j) == input){
+                        cout << "invalid input, you cannot repeat a number." << endl;
+                        fail = true;
+                        break;
+                    }
+                }
+                if(fail){
+                    break;
+                }
+                inputs.push_back(input);
+            }
+            if(fail){
+                continue;
+            }
+            for(int i = 0; i < inputs.size(); i++){
+                cout << inputs.at(i) << endl;
+            }
+            // should start the clock once we start searching the hash maps.
+            t = clock();
+        }
+        if (option == 2){
+
+            t = clock();
+        }
+        if (option == 3){
+
+            t = clock();
+        }
+        if (option == 4){
+
+            t = clock();
+        }
+        if (option == 5){
+
+            t = clock();
+        }
         t = clock() - t;
         cout << "Execution time: " << t / 10000000.0 << "s" << endl << endl;
+        printMenu();
+        cin >> option;
     }
     return 0;
 }

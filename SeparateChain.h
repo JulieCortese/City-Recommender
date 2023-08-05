@@ -5,14 +5,14 @@
 #include <functional>
 class SeparateChain
 {
-    std::vector<std::vector<std::pair<std::string, std::string>>> container;
+    std::vector<std::vector<std::pair<std::string, std::vector<std::string>>>> container;
     int capacity = 2;
     int size = 0;
     float maxLoadFactor = 0.8;
 
     void reHash()
     {
-        std::vector<std::vector<std::pair<std::string,std::string>>> temp = container;
+        std::vector<std::vector<std::pair<std::string, std::vector<std::string>>>> temp = container;
         capacity *= 2;
         size = 0;
         container = {};
@@ -42,7 +42,7 @@ public:
         }
     }
 
-    void Insert(std::string key, std::string value)
+    void Insert(std::string key, std::vector<std::string> value)
     {
         int index = std::hash<std::string>{}(key) % capacity;
         container[index].push_back(std::make_pair(key, value));
@@ -54,7 +54,7 @@ public:
         }
 
     }
-    std::string Find(std::string key)
+    std::vector<std::string> Find(std::string key)
     {
         for (int i = 0; i < container.size(); i++)
         {
@@ -66,6 +66,8 @@ public:
                 }
             }
         }
-        return "Not present";
+        std::vector<std::string> temp;
+        temp.push_back("Not present");
+        return temp;
     }
 };

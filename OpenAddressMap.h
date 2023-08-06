@@ -57,21 +57,23 @@ private:
 
         //reinserts entries
         for(entry e : temp){
-            if(!e.empty)
+            if(!e.empty){
                 insert(e.key, e.value);
+            }
         }
-
     }
 
     void writeEntry(int i, Key k, Value v){
-        if(container[i].key != k)
+        if(container[i].key != k){
             _size++;
+        }
         container[i].empty = false;
         container[i].fresh = false;
         container[i].key = k;
         container[i].value = v;
-        if(_size >= _capacity * maxLoadFactor)
+        if(_size >= _capacity * maxLoadFactor){
             reHash();
+        }
     }
 
 public:
@@ -146,8 +148,9 @@ public:
                 _size--;
                 return true;
             }
-            if(container[(i + h) % _capacity].fresh)
+            if(container[(i + h) % _capacity].fresh){
                 return false;
+            }
         }
         return false;
     }
@@ -158,10 +161,12 @@ public:
     bool contains(Key k){
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
-            if(container[(i + h) % _capacity].key == k && !container[(i + h) % _capacity].empty)
+            if(container[(i + h) % _capacity].key == k && !container[(i + h) % _capacity].empty){
                 return true;
-            if(container[(i + h) % _capacity].fresh)
+            }
+            if(container[(i + h) % _capacity].fresh){
                 return false;
+            }
         }
         return false;
     }
@@ -171,15 +176,18 @@ public:
         int bookmark = -1;
 
         for(int i = 0; i < _capacity; i++){
-            if(container[(i + h) % _capacity].key == k)
+            if(container[(i + h) % _capacity].key == k){
                 return container[(i + h) % _capacity].value;
+            }
 
             //bookmarks the first empty slot
-            if(container[(i + h) % _capacity].empty && bookmark == -1)
+            if(container[(i + h) % _capacity].empty && bookmark == -1){
                 bookmark = (i + h) % _capacity;
+            }
 
-            if(container[(i + h) % _capacity].fresh)
+            if(container[(i + h) % _capacity].fresh){
                 break;
+            }
         }
 
         writeEntry(bookmark, k, Value());
@@ -189,10 +197,12 @@ public:
     Value find(Key k){
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
-            if(container[(i + h) % _capacity].key == k && !container[(i + h) % _capacity].empty)
+            if(container[(i + h) % _capacity].key == k && !container[(i + h) % _capacity].empty){
                 return container[(i + h) % _capacity].value;
-            if(container[(i + h) % _capacity].fresh)
+            }
+            if(container[(i + h) % _capacity].fresh){
                 throw std::runtime_error("Key is not present in map.");
+            }
         }
         throw std::runtime_error("Key is not present in map.");
     }
@@ -210,8 +220,9 @@ public:
     }
 
     int count(Key k){
-        if(contains(k))
+        if(contains(k)){
             return 1;
+        }
         return 0;
     }
 /*

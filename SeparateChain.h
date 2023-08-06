@@ -92,8 +92,6 @@ public:
     std::string FindRank(std::vector<std::string> index)
     {
         float max = 0;
-        // float sum = 0;
-        // int factor = 5;
         std::string key;
         for (int i = 0; i < container.size(); i++)
         {
@@ -103,7 +101,6 @@ public:
                 //int factor = 5;
                 for(int k = 0; k < 5; k++){
                     sum += stof(container[i][j].second[stoi(index[k]) - 1]) * (5 - k);
-                    //factor--;
                 }
                 if (sum > max)
                 {

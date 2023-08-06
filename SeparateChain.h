@@ -98,7 +98,6 @@ public:
             for (int j = 0; j < container[i].size(); j++)
             {
                 float sum = 0;
-                //int factor = 5;
                 for(int k = 0; k < 5; k++){
                     sum += stof(container[i][j].second[stoi(index[k]) - 1]) * (5 - k);
                 }

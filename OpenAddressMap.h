@@ -16,7 +16,6 @@ private:
 
 
     std::vector<entry> container = {};
-    //std::vector<Iter> iterators = {};
 
     int _size = 0;
     int _capacity = 16; //this is arbitrary
@@ -96,39 +95,7 @@ public:
         }
         _capacity = container.capacity();
     }
-    /*
-    class Iter{
-    private:
-        int index;
-        int direction;
-        
-    public:
-        Iter(int i, int d){
-        
-        }
-        int getIndex(){
-            return index;
-        }
-        void operator++(){
-            do{
-                index += direction;
-            }while(container[index].empty);
-        }
-        Value& operator*(){
-            return container[index].value;
-        }
-        bool operator==(Iter lhs){
-            return index == lhs.getIndex();
-        }
-        bool operator<(Iter lhs){
-            return direction * index < direction * lhs.getIndex();
-        }
-        bool operator>(Iter lhs){
-            return direction * index > direction * lhs.getIndex();
-        }
-    }
-    */
-    
+
     void insert(Key k, Value v){
         unsigned int h = std::hash<Key>{}(k);
         for(int i = 0; i < _capacity; i++){
@@ -225,10 +192,4 @@ public:
         }
         return 0;
     }
-/*
-    Iter begin(){
-        Iter it = new Iter();
-        
-    }
-*/
 };
